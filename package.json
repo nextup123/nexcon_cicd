@@ -1,6 +1,6 @@
 {
   "name": "ethercat-config-tool",
-  "version": "3.8.0",
+  "version": "3.8.1",
   "description": "EtherCAT configuration & diagnosis tool for Innovance drives \u2014 React + Express + rclnodejs",
   "private": true,
   "main": "server/index.js",
