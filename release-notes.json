@@ -1,6 +1,6 @@
 {
   "appId": "ethercat_config_tool",
-  "version": "3.8.0",
+  "version": "3.8.1",
   "title": "Safer updates",
   "releasedAt": "2026-10-22",
   "channel": "stable",
