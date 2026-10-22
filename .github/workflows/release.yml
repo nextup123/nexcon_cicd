@@ -1,0 +1,61 @@
+# Release check. Robot PCs only install a version once this has passed for its tag.
+#
+#   Every push and pull request: lint, build the screens, run the tests.
+#   A version tag (v3.7.1): the same checks, plus the tag must match package.json and
+#   release-notes.json. If all pass, the tag is marked checked with a second tag,
+#   verified/v3.7.1, on the same commit; the Update page offers only marked versions.
+#   Then release-notes.json is sent to the release server (repository secret HUB_URL).
+#
+# If the tool lives in a sub-folder of a bigger repository, move this file to that repository's
+# .github/workflows and add `working-directory: <folder>` under `defaults.run`.
+name: Release check
+
+on:
+  push:
+    branches: ['**']
+    tags: ['v*']
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            client/package-lock.json
+      - name: Install (without building the drive controller library, which needs ROS 2)
+        run: npm ci --ignore-scripts && npm --prefix client ci
+      - name: Lint
+        run: npm run lint
+      - name: Build the screens
+        run: npm run build
+      - name: Tests (simulated drives)
+        run: npm test
+
+  mark-checked:
+    if: startsWith(github.ref, 'refs/tags/v') && !startsWith(github.ref, 'refs/tags/verified/')
+    needs: check
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      HUB_URL: ${{ secrets.HUB_URL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Mark the tag as checked (verified/${{ github.ref_name }})
+        run: |
+          git tag -f "verified/${GITHUB_REF_NAME}" "${GITHUB_SHA}"
+          git push -f origin "refs/tags/verified/${GITHUB_REF_NAME}"
+      - name: Publish release notes to the release server
+        if: env.HUB_URL != ''
+        # A sleeping or unreachable server must not undo the check; the notes are also in the repository.
+        continue-on-error: true
+        run: node scripts/publish-release.js

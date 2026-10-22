@@ -1,0 +1,20 @@
+node_modules
+client/node_modules
+*.tmp
+data/*.bak
+.vscode
+*.zip
+# Created on each PC; never commit these
+data/history.json
+data/drive_profiles.json
+data/problem_reports.json
+data/update_log.json
+data/update_settings.json
+data/update_pending.json
+data/update_rolled_back
+data/machine.json
+# The operator's own files and update work files, made on each PC
+user-data/
+client/dist/
+client/dist-next/
+client/dist-old-*/

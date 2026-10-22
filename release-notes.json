@@ -1,0 +1,42 @@
+{
+  "appId": "ethercat_config_tool",
+  "version": "3.8.0",
+  "title": "Safer updates",
+  "releasedAt": "2026-10-22",
+  "channel": "stable",
+  "summary": "Only checked versions install, recipes and settings are copied before each update, updates wait while the drives are in use, and a version that makes the drives worse goes back by itself.",
+  "changes": [
+    {
+      "type": "feature",
+      "area": "Software update",
+      "title": "Only checked versions can be installed",
+      "description": "A version appears as \"Not checked yet\" until the release check on GitHub has passed it."
+    },
+    {
+      "type": "feature",
+      "area": "Software update",
+      "title": "Copy of recipes and settings before every update",
+      "description": "Go back can put the recipes and drive settings from before the update back. Nothing is lost: the newer ones are kept in a copy."
+    },
+    {
+      "type": "improvement",
+      "area": "Software update",
+      "title": "Updates wait while the drives are in use",
+      "description": "Install, Restart and Go back wait while a recipe runs or drive settings are being written."
+    },
+    {
+      "type": "improvement",
+      "area": "Software update",
+      "title": "Health check after an update",
+      "description": "If the drive controller or drives stop answering after an update, the previous version is put back by itself."
+    }
+  ],
+  "upgradeNotes": "Before the first update to this version, set up the release check on GitHub (see README), or untick \"Only install versions that passed the release check\" in Update settings.",
+  "requiresRestart": true,
+  "mandatory": false,
+  "compatibility": {
+    "node": ">=18",
+    "ros": "humble",
+    "drives": "SV660N"
+  }
+}

@@ -1,0 +1,62 @@
+[
+    {
+        "index": "200Bh",
+        "subindex": "40h",
+        "name": "Not Ready State",
+        "data_type": "uint16",
+        "default": 0,
+        "min": 0,
+        "max": 5,
+        "unit":"vdc"
+    },
+    {
+        "index": "200Bh",
+        "subindex": "43h",
+        "name": "Encoder Temperature",
+        "data_type": "int16",
+        "default": 0,
+        "min": -32768,
+        "max": 32767,
+        "unit":"-"
+    },
+    {
+        "index": "200Bh",
+        "subindex": "01h",
+        "name": "Motor Speed Actual Value",
+        "data_type": "int16",
+        "default": 0,
+        "max": -32767,
+        "min": 32767,
+        "unit":"rpm"
+    },
+    {
+        "index": "200Bh",
+        "subindex": "14h",
+        "name": "Total power-on time",
+        "data_type": "int16",
+        "default": 0.0,
+        "max": 6553.5,
+        "min":0.0,
+        "unit":"-"
+    },
+    {
+        "index": "200Bh",
+        "subindex": "1Bh",
+        "name": "Bus Voltage",
+        "data_type": "uint16",
+        "default": 0.0,
+        "max": 6553.5,
+        "min":0.0,
+        "unit":"vdc"
+    },
+    {
+        "index": "200Bh",
+        "subindex": "2Ah",
+        "name": "Module Temperature",
+        "data_type": "int16",
+        "default": 0,
+        "max": -20,
+        "min":200,
+        "unit":"degC"
+    }
+]

@@ -1,0 +1,44 @@
+[
+    {
+        "index": "200Bh",
+        "subindex": "22h",
+        "name": "Fault log",
+        "data_type": "int16"
+    },
+    {
+        "index": "200Bh",
+        "subindex": "23h",
+        "name": "Fault code set by H0B-33",
+        "data_type": "int16"
+    },
+    {
+        "index": "200Bh",
+        "subindex": "24h",
+        "name": "Time Stamp of the selected Fault",
+        "data_type": "int16"
+    },
+    {
+        "index": "200Bh",
+        "subindex": "26h",
+        "name": "Motor Speed upon occurrence of the selected fault",
+        "data_type": "int16"
+    },
+    {
+        "index": "200Bh",
+        "subindex": "29h",
+        "name": "Bus Voltage",
+        "data_type": "int16"
+    },
+    {
+        "index": "200Bh",
+        "subindex": "2Ah",
+        "name": "Input Terminal",
+        "data_type": "int16"
+    },
+    {
+        "index": "200Bh",
+        "subindex": "2Ch",
+        "name": "Output Terminal",
+        "data_type": "int16"
+    }
+]
